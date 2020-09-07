@@ -1,0 +1,17 @@
+C:\Users\omer\source\repos\SID.Sms\bin\Release\SID.Sms.dll.config
+C:\Users\omer\source\repos\SID.Sms\bin\Release\SID.Sms.dll
+C:\Users\omer\source\repos\SID.Sms\bin\Release\SID.Sms.pdb
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Microsoft.IdentityModel.Logging.dll
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Microsoft.IdentityModel.Tokens.dll
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Newtonsoft.Json.dll
+C:\Users\omer\source\repos\SID.Sms\bin\Release\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Twilio.dll
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Microsoft.IdentityModel.Tokens.xml
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Newtonsoft.Json.xml
+C:\Users\omer\source\repos\SID.Sms\bin\Release\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\omer\source\repos\SID.Sms\bin\Release\Twilio.xml
+C:\Users\omer\source\repos\SID.Sms\obj\Release\SID.Sms.csprojAssemblyReference.cache
+C:\Users\omer\source\repos\SID.Sms\obj\Release\SID.Sms.csproj.CoreCompileInputs.cache
+C:\Users\omer\source\repos\SID.Sms\obj\Release\SID.Sms.csproj.CopyComplete
+C:\Users\omer\source\repos\SID.Sms\obj\Release\SID.Sms.dll
+C:\Users\omer\source\repos\SID.Sms\obj\Release\SID.Sms.pdb

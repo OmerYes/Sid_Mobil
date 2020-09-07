@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link href="../css/Addproducttopost/UrunEkleme.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="top-container">
+        <div class="top-back">Geri</div>
+        <div class="top-baslık">Ürün Ekleme</div>
+        <div class="top-forward">İleri</div>
+    </div>
+    <div class="body-container">
+        <div class="body-image">
+            <div class="image">
+                <img src="img/adam.png" alt="">
+            </div>
+            <div class="body-text" id="body-text">
+                <!--En trend 2019 gece elbiseleri-->
+            </div>
+            <div class="body-textarea" id="body-textarea">
+                <!--<textarea name="" id="" cols="112" rows="10">Penye olması sayende terletmiyor  ve rahat bir kullanım deneyimi sağlıyor . ayrıca kol kesimi ve etek boyuı salaş ve şık görünümünü çok beğendim .Penye olması sayende terletmiyor  ve rahat bir kullanım deneyimi sağlıyor . ayrıca kol kesimi ve etek boyuı salaş ve şık görünümünü çok beğendim .Penye olması sayende terletmiyor  ve rahat bir kullanım deneyimi sağlıyor . ayrıca kol kesimi ve etek boyuı salaş ve şık görünümünü çok beğendim .
+                 </textarea>-->
+            </div>
+        </div>
+        <hr class="body-cizgi">
+        <div class="body-square">
+            <div class="body-plus"><i class="fas fa-plus-square"></i></div>
+            <div class="body-square-text">
+                Ürün Ekle
+            </div>
+        </div>
+        </div>
+</body>
+
+</html>
+<script>
+    $(document).on("click", "#ileri", function () {
+        $.ajax({
+            type: "POST",
+            url: apiurl + "/api/Post/FinishInfluencerPostProduct",
+            data: PostProduct,
+            success: function (response) {
+
+            }
+        })
+    })
+
+    $(document).on("click", "#geri", function () {
+        document.location.href = "AddPost.html"
+    })
+    //Eklenecek postu ekrana basan kod
+    var PostID = localStorage.getItem("PostID");
+    $.getJSON(apiurl + "/api/Post/GetSavedPost/" + PostID, function (data) {
+
+        $("#body-textarea").append('<textarea style="cols:112 rows:10">' + data.Description + '</textarea>')
+        $("#body-text").html(data.Title);
+    })
+    //ürün ekle butonuna tıklandığı zaman kaydedilen sayfasına yönlendiren kod
+    $(document).on("click", ".body-square", function (){
+        document.location.href="SavedProducts.html"
+    })
+    var ProductID = localStorage.getItem("SelectedProductID")
+    
+</script>

@@ -1,0 +1,53 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ADRESLERİM</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/sid.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="top"><a href="home.html"><img class="geri" width="20px" src="../../www/images/navbar/geri.svg"></a><input class="search" type="search"><a class="cam" href="#"></a></div>
+    <!--<div class="profil-b"><div id="profile-image" class="p-foto"></div></div>-->
+    <div class="baslik-b">Adreslerim</div>
+    <div class="liste-c">
+        <div class="ekle">
+            <a href="#"><span>+</span>Yeni ekle</a>
+        </div>
+        <div id="address">
+
+        </div>
+    </div>
+    <div class="footer-sid">
+        <a class="home" href="PostList.html"></a>
+        <a class="flag" href="#"></a>
+        <a class="basket" href="#"></a>
+        <a class="user" href="home.html"></a>
+    </div>
+</body>
+</html>
+
+<script>
+    $.getJSON(apiurl + "/api/Profile/GetInfluencerAddress/" + InfluencerUserID, function (data) {
+
+        $(".baslik-b").before('<div class="profil-b"><div style="background: url(' + weburl + data[0].ImgPath + ') no-repeat center center; background-size:cover;"></div></div>')
+
+        $.map(data, function (item) {
+            $("#address").append("<div class='hesap'>"+"<h5>" + item.TypeName + "</h5>" +
+                "<h4>" + item.Street + "</h4>" +
+                "<h4>" + item.District + "</h4>" +
+                "<h4>" + item.Region + " " + item.City + "</h4>"+"</div>")
+        })
+    })
+
+    //Adres ekleme alanı
+    $(document).on("click", "div[class='ekle']", function () {
+        document.location.href = "Addaddress.html";
+    })
+</script>

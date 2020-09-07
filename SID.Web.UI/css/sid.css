@@ -1,0 +1,300 @@
+body, div, input, a, table, tr, td, tbody, thead, label, .col-form-label-sm, .form-control-sm, .btn-sm, .btn, .custom-select-sm {
+    font-size: 14px;
+}
+.sid-logo {
+    height: 40px;
+}
+.face-foto {
+    position: relative;
+    width:47px;
+    height: 47px;
+ }
+.face-foto img {
+    height: 47px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.face-foto span {
+    width: 15px;
+    height: 15px;
+    background-color: #298bc8;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    left: 30px;
+    top: 0px;
+ }
+.sid-top-menu li {
+    margin-left: 10px;
+}
+.sid-person {
+    border: 0;
+    background-color: transparent;
+    line-height: 40px;
+}
+.header-sid {
+    position: relative;
+    height: 250px;
+}
+.header-sid-b {
+    position: relative;
+    height: 250px;
+    margin-bottom: 10px;
+}
+.head-sid-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 250px;
+    /* border-radius: 10px 10px 0 0; */
+}
+.head-sid-img img { 
+    width: 100%;
+}
+.head-sid-img-b {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 250px;
+    border-radius: 10px;
+}
+.head-sid-img-b img { 
+    width: 100%;
+}
+.menu-sid-2 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.menu-sid-2 li {
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 16.666%;
+    list-style: none;
+    text-align: center;
+    line-height: 50px;
+    background-color: #298bc8;
+    margin-bottom: 10px;
+    border-radius: 0 0 10px 10px;
+}
+.menu-sid-2 li:hover, .menu-sid-2 li.active { 
+background-color: #0099cc;
+}
+.menu-sid-2 li:hover a, .menu-sid-2 li.active a { 
+    color: #fff;
+}
+.menu-sid-2 li a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color:#fff;
+}
+.fas.fa-plus {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 20px;
+    margin-left: 5px;
+    background-color: #298bc8;
+    color: #fff;
+    box-sizing: border-box;
+}
+.head-magaza-logo {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    font-weight: 900;
+}
+.head-magaza-logo-b {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    font-weight: 900;
+}
+.head-magaza-logo img {
+    width: 100%;
+    border-radius: 50%;
+}
+.head-magaza-logo-b img {
+    width: 100%;
+    border-radius: 50%;
+}
+.head-magaza-gorsel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.head-magaza-abone {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    padding: 5px;
+}
+.head-magaza-abone-b {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    padding: 5px;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0099cc;
+    border-color: #0099cc;
+}
+.sid-menu-tab {
+    background-color: #efefef;
+    border-radius: 10px;
+    padding: 10px;
+}
+.custom-control.custom-checkbox {
+line-height: 30px;
+}
+.table-sid tr {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.table-sid td:nth-child(1) {
+    width: 70%;
+    padding-right: 10px;
+  }
+  .table-sid td:nth-child(2) {
+    width: 30%;
+  }
+.table-sid td {
+    margin: 0 10px;
+    text-align: center;
+}
+.table-sid td .custom-control {
+    padding-left: 1rem;
+}
+.sid-etiket {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.sid-etiket div {
+    width:18%;
+}
+.sid-etiket div img {
+    width:100%;
+    border-radius: 10px;
+}
+.card-deck, .hiza-sid-a {
+    margin-bottom: 10px
+}
+.hiza-sid-b {
+    text-align: right;
+}
+.bg-primary {
+    background-color: rgba(41, 139, 200, .5) !important;
+    -webkit-box-shadow: inset 0 -20px 20px 0 rgba(41,139,200,.3);
+    box-shadow: inset 0 20px 20px 0 rgba(41,139,200,.3);
+}
+.hiza-b {
+    padding: 15px;
+}
+.hiza-c {
+    margin-top: 20px;
+}
+.hiza-d {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.list-group-item {
+    min-height: 50px;
+}
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    margin: auto;
+    background-color: #ffff;
+    border-radius: 10px;
+    padding: 20px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    -webkit-transition: all 500ms ease;
+-moz-transition: all 500ms ease;
+-ms-transition: all 500ms ease;
+-o-transition: all 500ms ease;
+transition: all 500ms ease;
+}
+.form-signin:hover { 
+    -webkit-box-shadow: 0 0 20px 2px rgba(0,0,0,.5);
+    box-shadow: 0 0 20px 2px rgba(0,0,0,.5);
+    -webkit-transition: all 500ms ease;
+-moz-transition: all 500ms ease;
+-ms-transition: all 500ms ease;
+-o-transition: all 500ms ease;
+transition: all 500ms ease;
+}
+.login-sid {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.login-sid .custom-checkbox {
+    padding-bottom: 5px;
+}
+.form-signin .form-control {
+    margin-bottom: 10px;
+}
+.form-signin .text-muted {
+    margin-bottom: 0;
+}
+.login-logo-sid {
+    width: 100px;
+    margin-bottom: 20px;
+}
+.login-background {
+    background-color: rgba(41, 139, 200, .5) !important;
+    -webkit-box-shadow: inset 0 -20px 20px 0 rgba(41,139,200,.3);
+    box-shadow: inset 0 20px 20px 0 rgba(41,139,200,.3);
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ccc;
+}

@@ -1,0 +1,18 @@
+﻿
+@model AdminUserVM
+
+@{
+    /**/
+
+    ViewBag.Title = "AddAdminUser";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+
+@using (Html.BeginForm("AddAdminUser", "AdminUser", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.Partial("Partial/AdminUserForm")
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+}

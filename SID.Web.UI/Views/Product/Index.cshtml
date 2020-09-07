@@ -1,0 +1,580 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model List<ProductVM>
+<ul class="nav nav-pills mb-3 sid-menu-tab" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="urunler" data-toggle="pill" href="#urun" role="tab" aria-controls="urun" aria-selected="true">Ürünler</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="listeler" data-toggle="pill" href="#liste" role="tab" aria-controls="liste" aria-selected="false">Listeler</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="postlar" data-toggle="pill" href="#posts" role="tab" aria-controls="posts" aria-selected="false">Postlar</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="etiketler" data-toggle="pill" href="#etiket" role="tab" aria-controls="etiket" aria-selected="false">Etiketler</a>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+
+    <div class="tab-pane fade show active" id="urun" role="tabpanel" aria-labelledby="urunler">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Kategori</label>
+                    <div class="col-sm-2">
+                        <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Kategori">
+                    </div>
+
+                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Stok adedi</label>
+                    <div class="col-sm-2">
+                        <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Stok adedi">
+                    </div>
+
+                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Satınalma adedi</label>
+                    <div class="col-sm-2">
+                        <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Satınalma adedi">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3"><button type="button" class="btn btn-primary btn-sm btn-block">Listele</button></div>
+                    <div class="col-sm-9"><input type="search" class="form-control form-control-sm" id="" placeholder="Search..."></div>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Barkod no </th>
+                            <th scope="col">Ürün ismi</th>
+                            <th scope="col">Stok adedi</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Komisyon oranı</th>
+                            <th scope="col">İşlem</th>
+                            <th scope="col">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="p_@item.ID">
+                                <th scope="row">@item.BarcrodeNumber</th>
+                                <td>@item.Name</td>
+                                <td>@item.UnitsInStock</td>
+                                <td>@item.Price</td>
+                                <td><i class="fas fa-edit" style="cursor:pointer" aria-hidden="true" data-toggle="modal" data-target="#myModal" data-id="@item.ID" data-name="@item.Name" data-commission="@item.CommissionRate">@item.CommissionRate</i></td>
+                                <td><i onclick="DeleteProduct(@item.ID)" class="fas fa-trash" style="cursor:pointer"></i></td>
+                                <td><a href="/Product/UpdateProduct/@item.ID"><i class="fas fa-edit" style="cursor:pointer"></i></a> </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-4">
+                <div class="list-group">
+                    <h6 href="#" class="list-group-item list-group-item-action active">
+                        ÜRÜNLER
+                    </h6>
+                    <table class="table-sid">
+                        <tr class="list-group-item list-group-item-action">
+                            <td><a href="#" class="btn btn-link">Lorem ipsum</a></td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td><a href="#" class="btn btn-link">Lorem ipsum</a></td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td><a href="#" class="btn btn-link">Lorem ipsum</a></td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                    </table>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-list"></i> Alışveriş listesi oluştur <br>Takipççilerinizin beğeneceği ürünleri bir listede birleştirin</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-th-list"></i> Post oluştur <br>ürünleri içeren resimlerinizi sid ve sosyal medya profilinizde paylaşın</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="far fa-sticky-note"></i> Etiket oluştur <br>SID etiketini indirip dilediğiniz yerde paylaşın</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="liste" role="tabpanel" aria-labelledby="listeler">
+        <div class="row">
+            <div class="col-md-8">
+                <h6>Yayındaki listeler</h6>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Liste 1 <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                                    <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                                    <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </h6>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4"><img src="img/img(1).png" class="img-thumbnail"></div>
+                                    <div class="col-md-4"><img src="img/img(2).png" class="img-thumbnail"></div>
+                                    <div class="col-md-4"><img src="img/img(3).png" class="img-thumbnail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Liste 2 <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                                    <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                                    <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </h6>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4"><img src="img/img(4).png" class="img-thumbnail"></div>
+                                    <div class="col-md-4"><img src="img/img(5).png" class="img-thumbnail"></div>
+                                    <div class="col-md-4"><img src="img/img(6).png" class="img-thumbnail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Liste 3 <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                                    <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                                    <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </h6>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4"><img src="img/img(2).png" class="img-thumbnail"></div>
+                                    <div class="col-md-4"><img src="img/img(4).png" class="img-thumbnail"></div>
+                                    <div class="col-md-4"><img src="img/img(3).png" class="img-thumbnail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h6>Yayında olmayan listeler</h6>
+                <p>Hiç ürün yok. Sağdaki panelden hemen bir ürün ekleyin.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group">
+                    <h6 href="#" class="list-group-item list-group-item-action active">
+                        Liste
+                    </h6>
+                    <table class="table-sid">
+                        <tr class="list-group-item list-group-item-action">
+                            <td><a href="#" class="btn btn-link">Lorem ipsum</a></td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td><a href="#" class="btn btn-link">Lorem ipsum</a></td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td><a href="#" class="btn btn-link">Lorem ipsum</a></td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                    </table>
+                    <div href="#" class="list-group-item list-group-item-action">Liste ismi <input type="search" class="form-control form-control-sm" id="" placeholder="Liste1"></div>
+                    <div href="#" class="list-group-item list-group-item-action">
+                        Liste sırası <select class="custom-select custom-select-sm">
+                            <option selected>1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                        </select>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                            <label class="custom-control-label" for="customSwitch1">Yayın durumu</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Devam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="postlar">
+        <div class="row">
+            <div class="card-columns col-md-8">
+                <div class="card">
+                    <img src="img/img(1).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-3">
+                    <blockquote class="blockquote mb-0 card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                                Someone famous in <cite title="Source Title">Source Title</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                    <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                        <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="img/img(7).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"><small class="text-muted">Lorem ipsum</small></p>
+                        <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white text-center p-3">
+                    <blockquote class="blockquote mb-0">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                        <footer class="blockquote-footer text-white">
+                            <small>
+                                Someone famous in <cite title="Source Title">Source Title</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                    <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                        <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+                        <p class="card-text"><small class="text-muted">Lorem ipsum</small></p>
+                        <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="img/img(8).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-3 text-right">
+                    <blockquote class="blockquote mb-0">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                                Someone famous in <cite title="Source Title">Source Title</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                    <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                        <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+                        <p class="card-text"><small class="text-muted">Lorem ipsum</small></p>
+                        <div class="btn-group col-md-12 justify-content-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- sağ bölüm post -->
+            <div class="col-md-4">
+                <div class="list-group">
+                    <h6 href="#" class="list-group-item list-group-item-action active">
+                        Liste
+                    </h6>
+                    <table class="table-sid">
+                        <tr class="list-group-item list-group-item-action">
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Check this custom</label>
+                                </div>
+                            </td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">Check this custom</label>
+                                </div>
+                            </td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">Check this custom</label>
+                                </div>
+                            </td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                    </table>
+                    <div class="list-group-item list-group-item-action">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile" data-browse="Ara">Resim seç</label>
+                        </div>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Açıklama</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <button class="btn btn-primary"><i class="fas fa-plus-circle"></i></button> Etiket oluştur
+                    </div>
+                    <button class="btn btn-primary">Devam</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="etiket" role="tabpanel" aria-labelledby="etiketler">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+
+                    <div class="col-md-4">Etiket ismi</div>
+                    <div class="col-md-4">Kullanım sayısı</div>
+                    <div class="btn-group col-md-4 justify-content-center" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-download"></i></i></button>
+                        <button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="sid-etiket">
+                            <div>
+                                <img src="img/img(2).png">
+                                <p class="card-text"><small class="text-muted">Ürün ismi</small></p>
+                            </div>
+                            <div>
+                                <img src="img/img(1).png">
+                                <p class="card-text"><small class="text-muted">Ürün ismi</small></p>
+                            </div>
+                            <div>
+                                <img src="img/img(3).png">
+                                <p class="card-text"><small class="text-muted">Ürün ismi</small></p>
+                            </div>
+                            <div>
+                                <img src="img/img(6).png">
+                                <p class="card-text"><small class="text-muted">Ürün ismi</small></p>
+                            </div>
+                            <div>
+                                <img src="img/img(4).png">
+                                <p class="card-text"><small class="text-muted">Ürün ismi</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- sağ bölüm post -->
+            <div class="col-md-4">
+                <div class="list-group">
+                    <h6 href="#" class="list-group-item list-group-item-action active">
+                        Liste
+                    </h6>
+                    <table class="table-sid">
+                        <tr class="list-group-item list-group-item-action">
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck111">
+                                    <label class="custom-control-label" for="customCheck111">Check this custom</label>
+                                </div>
+                            </td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck222">
+                                    <label class="custom-control-label" for="customCheck222">Check this custom</label>
+                                </div>
+                            </td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr class="list-group-item list-group-item-action">
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck333">
+                                    <label class="custom-control-label" for="customCheck333">Check this custom</label>
+                                </div>
+                            </td>
+                            <td><button type="button" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                    </table>
+                    <div class="list-group-item list-group-item-action">
+                        Etiket ismi
+                        <input class="form-control form-control-sm" type="text">
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <h6>Lorem Ipsum</h6>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck11">
+                            <label class="custom-control-label" for="customCheck11">Lorem ipsum</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck22">
+                            <label class="custom-control-label" for="customCheck22">Lorem ipsum</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck33">
+                            <label class="custom-control-label" for="customCheck33">Lorem ipsum</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">İndir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Popup Modal Komisyon oranını güncellemek için*@
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="">Komisyon Oranı Güncelleme</h4>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        @Html.Hidden("ID", new { @id = "ID" })
+                        <div class="form-group">
+                            <label>Ürün İsmi</label>
+                            @Html.TextBox("Name", "", new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+
+                        <div class="form-group">
+                            <label>Komisyon Oranı</label>
+                            @Html.TextBox("CommissionRate", "", new {  @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="btn btn-primary btn-sm btn-block" id="SaveRecord">Kaydet</a>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).on("click", ".fa-edit", function () {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        var commission = $(this).data('commission');
+        $(".modal-body #ID").val(id);
+        $(".modal-body #Name").val(name);
+        $(".modal-body #CommissionRate").val(commission);
+
+    });
+
+
+
+    $("#SaveRecord").click(function () {
+        var data = $("#SubmitForm").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/Product/SaveCommissionRateDatabase",
+            data: data,
+            success: function (result) {
+                alert("Success!..");
+                window.location.href = "/Product/Index";
+                $("#MyModal").modal("hide");
+
+            }
+        })
+    })
+
+
+    function DeleteProduct(id) {
+        swal({
+            title: "Ürünü silmek istediğinize emin misiniz?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+
+
+
+                if (willDelete) {
+                    $.ajax({
+                        url: "/Product/DeleteProduct/" + id,
+                        type: "POST",
+                        success: function () {
+                            $("#p_" + id).fadeOut();
+                        }
+                    })
+
+                    swal("Ürün başarıyla silindi!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("İşlem iptal edildi!");
+                }
+            });
+    }
+
+</script>

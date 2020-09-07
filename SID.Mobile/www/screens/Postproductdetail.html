@@ -1,0 +1,89 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link href="../css/Postproductdetail/UrunDetayi.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="top-container">
+        <div class="top-back" id="geri">Geri</div>
+        <div class="top-baslık">Ürün Detayı</div>
+        <div class="top-forward" id="ileri">İleri</div>
+    </div>
+    <div class="body-container">
+
+        <div class="body-img">
+            <!--<img src="img/pantolon.png" alt="">-->
+        </div>
+        <div class="body-imgtext">
+            <p>Ürün başlığı</p>
+        </div>
+        <div class="body-imgtext-2">
+            <p>(max 5 kelime)</p>
+        </div>
+        <div class="body-imginput">
+            <input type="text" placeholder="Örneğin:Pantolon" id="title">
+        </div>
+        <div class="body-imgtext-3">
+            <p>Kullanım alanı ve tarzı?</p>
+        </div>
+        <div class="body-imgtext-4">
+            <p>(max 5 kelime)</p>
+        </div>
+        <div class="body-imginput2">
+            <textarea name="" id="style" cols="90" rows="3" placeholder="Örneğin:Günlük giyim,Düz kesim,Gri"></textarea>
+        </div>
+        <div class="body-imgtext-5">
+            <p>Ürün Açıklaması</p>
+        </div>
+        <div class="body-imgtext-6">
+            <p>(max 80 kelime)</p>
+        </div>
+        <div class="body-imginput3">
+            <textarea name="" id="description" cols="90" rows="8"></textarea>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+    $(document).on("click", "#geri", function () {
+        document.location.href = "SavedProducts.html"
+    })
+    var ProductID = localStorage.getItem("SelectedProductID")
+    $(document).ready(function () {
+        $.getJSON(apiurl + "/api/Product/GetPostproduct/" + ProductID, function (data) {
+                $(".body-img").append('<img src="' + Productweburl + data.ProductImagePath + '"/>')
+        })
+    })
+
+    $(document).on("click", "#ileri", function () {
+
+        var PostProduct = new Object();
+        PostProduct.PostID = localStorage.getItem("PostID");
+        PostProduct.ProductID = localStorage.getItem("SelectedProductID");
+        PostProduct.Title = $("#title").val();
+        PostProduct.Style = $("#style").val();
+        PostProduct.Description = $("#description").val();
+
+        $.ajax({
+            type: "POST",
+            url: apiurl + "/api/Post/PostInfluencerPostProduct",
+            data: PostProduct,
+            success: function (response) {
+               
+            }
+        })
+    })
+
+
+</script>

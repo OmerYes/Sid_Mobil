@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../css/addpost/reset.css" rel="stylesheet" />
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+</head>
+
+<body>
+    <div class="top-container">
+        <div class="top-back" id="geri">Geri</div>
+        <div class="top-baslık">Yazı Detayı</div>
+        <div class="top-forward" id="ileri">İleri</div>
+    </div>
+    <div class="body-container">
+        <div class="body-square">
+            <div class="body-plus"><i class="fas fa-plus-square"></i></div>
+            <div class="body-square-text">
+                Kapak resmi
+            </div>
+        </div>
+        <div class="text-top">
+            <div class="text-1">Yazı başlığı</div>
+            <div class="text-2">(max 5 kelime)</div>
+            <div class="text-input1"><input type="text" id="yazibasligi" placeholder="Örneğin :Pantolon"></div>
+        </div>
+        <div class="text-buttom">
+            <div class="text-3">Giriş yazısı</div>
+            <div class="text-4">(max 35 kelime)</div>
+            <div class="text-input2"><textarea name="" id="giris" cols="20" rows="3"></textarea></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+    $(document).on('click', '#geri', function () {
+        window.location.href = 'home.html';
+    })
+    //ileri butonuna tıklandığında çalışan kod 
+    $(document).on('click','#ileri', function() {
+        var Addpost = new Object();
+        Addpost.Title = $("#yazibasligi").val();
+        Addpost.Description = $("#giris").val();
+        if (Addpost.Title != "") {
+            Addpost.InfluencerID = InfluencerUserID //core.js den kullanıcı id numarısı alınıyor
+            $.ajax({
+                type: "POST",
+                url: apiurl + "/api/Post/AddPost",
+                data: Addpost,
+                success: function (response) {
+                    var value = response
+                    window.location.href = "Addproducttopost.html"
+                    window.localStorage.setItem("PostID", value)
+                }
+            })
+        }
+        else {
+            alert("Lütfen gerekli alanları doldurunuz")
+        }
+
+    })
+</script>

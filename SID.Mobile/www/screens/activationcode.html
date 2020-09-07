@@ -1,0 +1,129 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LOGİN-3</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link rel="stylesheet" href="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/register/activationcode.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="s-login">
+        <div class="s-login-container">
+            <div class="logo-s"><img src="../img/sid-logo-mavi.svg"></div>
+            <div class="login-aktivasyon">Aktivasyon kodu</div>
+            <article class="clock">
+                <div class="minutes-container">
+                    <div class="minutes" id="minutes"></div>
+                </div>
+                <div class="ara-container">
+                    <div class="ara">:</div>
+                </div>
+                <div class="seconds-container">
+                    <div class="seconds" id="seconds"></div>
+                </div>
+            </article>
+            <div class="login-text">
+                <p>Lütfen telefonunuza mesaj olarak gelen aktivasyon kodunu giriniz.</p>
+            </div>
+            <div class="login-kod">
+                <div class="login-kodtext" ><input class="id" type="text" id="txt_kodtext1"  maxlength="1"/></div>
+                <div class="login-kodtext" ><input class="id" type="text" id="txt_kodtext2"  maxlength="1" /></div>
+                <div class="login-kodtext" ><input class="id" type="text" id="txt_kodtext3"  maxlength="1" /></div>
+                <div class="login-kodtext" ><input class="id" type="text" id="txt_kodtext4"  maxlength="1"/></div>
+                <div class="login-kodtext" ><input class="id" type="text" id="txt_kodtext5"  maxlength="1"/></div>
+                <div class="login-kodtext" ><input class="id" type="text" id="txt_kodtext6"  maxlength="1"/></div>
+            </div>
+
+            <div><input type="submit" class="s-login-buton" onclick="ActivateUserCode()" value="Kaydı tamamla" /></div>
+
+        </div>
+    </div>
+    <div class="sid-back">
+        <div></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    //Geri sayımın yapıldığı yer
+    var duration = 60 * 5;
+    var timer = duration, minutes, seconds;
+    var clock = setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minute = minutes < 10 ? "0" + minutes : minutes;
+        second = seconds < 10 ? "0" + seconds : seconds;
+
+        var m = document.getElementById("minutes");
+        var s = document.getElementById("seconds");
+
+        m.textContent = minute
+        s.textContent = second
+
+        if (--timer < 0) {
+            clearInterval(clock);
+            $(".s-login-buton").prop("disabled", true)
+            localStorage.removeItem("UserActivatedId")
+        }
+    }, 1000);
+
+    //Bir text boxtan diğerine otomatik geçişi sağlıyor.
+    $("input").keyup(function () {
+
+        var key = event.keyCode || event.charCode;
+        var index = $(this).index("input");
+        
+        if (key == 8) {
+
+            if (index != 0 ) {
+
+                $("input:eq(" + (index) + ")").val('').focus();
+            }
+
+        } else {
+
+            $("input:eq(" + (index + 1) + ")").focus();
+
+        }
+    });
+
+  
+    //Kaydı tamamlaya tıklayınca api ye bağlanıp girilen kodun doğru olup olmadığını kontrol eden fonksiyon
+    function ActivateUserCode() {
+        var InfluencerID = localStorage.getItem("UserActivatedId")
+
+        
+        var data = new Object();
+        data.ActivationCode = $("#txt_kodtext1").val() + $("#txt_kodtext2").val() + $("#txt_kodtext3").val() + $("#txt_kodtext4").val() + $("#txt_kodtext5").val() + $("#txt_kodtext6").val();
+        data.ID = InfluencerID;
+
+        $.ajax({
+            type: "POST",
+            url: apiurl + "/api/Register/ActivateUser",
+            data:data,
+            success: function () {
+                alert("başarılı")
+                window.location.href = "/index.html"
+                localStorage.removeItem("UserActivatedId")
+
+            },
+            error: function () {
+                alert("Hatalı kod girdiniz")
+            }
+        })
+    }
+
+</script>
+
+
+ 

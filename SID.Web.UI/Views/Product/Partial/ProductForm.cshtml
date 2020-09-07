@@ -1,0 +1,35 @@
+﻿
+@model SID.Web.UI.Models.VM.ProductVM
+
+@Html.HiddenFor(q => q.ID)
+<div class="form-group">
+    @Html.LabelFor(q => q.Name)
+    @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.Price)
+    @Html.TextBoxFor(q => q.Price, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label>Kategori:</label>
+    @Html.DropDownList("CategoryID", Model.drpCategories, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label>Resim:</label>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="files" name="files" lang="tr">
+        <label class="custom-file-label" for="files">Ürün Resimleri</label>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.Price)
+    @Html.TextBoxFor(q => q.Price, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.BarcrodeNumber)
+    @Html.TextBoxFor(q => q.BarcrodeNumber, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.Description)
+    @Html.TextBoxFor(q => q.Description, new { @class = "form-control" })
+</div>

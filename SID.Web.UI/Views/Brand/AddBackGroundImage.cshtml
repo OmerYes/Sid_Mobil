@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "AddBackGroundImage";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@model BrandVM
+
+
+@using (Html.BeginForm("AddBackGroundImage", "Brand", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+
+    @Html.HiddenFor(q => q.ID)
+
+    <div class="form-group">
+        <label>Marka Resmi Seçiniz</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="files" name="BackgroundImage">
+            <label class="custom-file-label" for="files">Marka Ana Resmi Seçiniz</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Marka Resmi Ekle</button>
+}

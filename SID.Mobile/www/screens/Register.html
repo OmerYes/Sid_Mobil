@@ -1,0 +1,101 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LOGİN-1</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/register/register.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="s-login">
+        <div class="s-login-container">
+            <div class="logo-s">  <a href="../index.html"><img src="../img/sid-logo-mavi.svg"></a></div>
+            <div><a class="s-kayit" href="../screens/Registerwithtel.html">Telefon no ile kayıt ol </a></div>
+            <div class="s-form-container">
+                <p>
+                    <label>Mail Adres</label>
+                    <input class="form-input" id="txt_email" type="email">
+                </p>
+                <p>
+                    <label>İsim </label>
+                    <input class="form-input" id="txt_name" type="text">
+                </p>
+                <p>
+                    <label>Soyisim</label>
+                    <input class="form-input" id="txt_surname" type="text">
+                </p>
+                <p>
+                    <label>Parola</label>
+                    <input class="form-input" id="txt_password" type="password">
+                </p>
+                <p>
+                    <label>Tekrar Parola</label>
+                    <input class="form-input" id="txt_passwordconfirm" type="password">
+                </p>
+                <div><input class="s-login-buton" type="submit" onclick="Register()" id="btn-submit" value="Kayıt ol"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="sid-back">
+        <div></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function Register() {
+        var Register = new Object();
+
+        Register.Email = $("#txt_email").val();
+        Register.Name = $("#txt_name").val();
+        Register.Surname = $("#txt_surname").val();
+        Register.Password = $("#txt_password").val();
+        Register.Passwordcompare = $("#txt_passwordconfirm").val();
+       
+
+        $.ajax({
+            type: "POST",
+            url: apiurl + "/api/Register/Register/",
+            data: Register,
+            success: function (response) {
+                var value = response;
+                window.localStorage.setItem("UserActivatedId", value);
+                document.location.href = "activationcode.html";
+                
+            },
+            error: function (m) {
+                result = m;
+                console.log(m);
+                if (m.status == "400") {
+                    var msg = "";
+                    var response = JSON.parse(result.responseText);
+                    if (response != null) {
+                        var modelState = response.ModelState;
+
+                        for (var key in modelState) {
+                            if (modelState.hasOwnProperty(key)) {
+                                msg += modelState[key] + "\n"
+                            }
+                        }
+                        result = msg;
+                        alert(result);
+                    }
+                }
+
+                else if (m.status == "404") {
+                    alert("Bu mail hesabı ile daha önce kayıt yapılmış");
+                }
+            }
+
+        })
+    }
+</script>

@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ÜRÜN DETAY</title>
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/sid.css" rel="stylesheet" />
+    <link href="../slick/slick.css" rel="stylesheet" />
+    <link href="../slick/slick-theme.css" rel="stylesheet" />
+    <script src="../scripts/core/coregeneral.js"></script>
+
+</head>
+<body>
+    <div class="top">
+        <a href="postlist.html"><img class="logo-sid" src="../images/logo/sid-logo-mavi.svg"></a>
+        <input class="search" type="search"><a class="cam" href="#"></a>
+    </div>
+    <div class="kontrol-alt-b">
+
+        <div class="person">
+            <div class="person-header">
+                <a href="#" class="share"></a>
+            </div>
+            <div class="product-photo">
+                <!-- ürün carousel start -->
+
+                <section class="lazy slider" data-sizes="50vw" id="test">
+
+                    <!--<div>
+                        <img src="img/urun-1.jpg">
+                    </div>
+                    <div>
+                        <img src="img/urun-1-.jpg">
+                    </div>
+                    <div>
+                        <img src="img/urun-1--.jpg">
+                    </div>-->
+                </section>
+
+                <!-- ürün carousel end -->
+            </div>
+            <div class="person-footer">
+                <div class="gozluk"></div><p class="red">3</p>
+                <div class="star"></div><p class="yellow">2</p>
+                <button class="sepet-ikon" onclick="acKapa1()"></button>
+                <!--<a href="#" class="fav"></a>-->
+            </div>
+            <!--<div style="opacity: 0;" id="sepet-1" class="sepet">
+                <section class="regular slider">
+                    <div>
+                        <img src="img/liste1.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste14.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste2.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste13.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste3.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste12.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste1.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste14.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste2.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste13.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste3.jpg"><p>34 ₺</p>
+                    </div>
+                    <div>
+                        <img src="img/liste12.jpg"><p>34 ₺</p>
+                    </div>-->
+            <!--</section>-->
+        </div>
+    </div>
+    <div class="person" id="description">
+        <!--<p class="aciklama">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit, orci sociis etiam netus pharetra turpis et, nam imperdiet augue curabitur conubia nunc.
+            Convallis sit risus parturient velit
+        </p>-->
+    </div>
+    <!-- aşağıdaki script sepeti açıp kapatıyor -->
+    <script>
+        function acKapa1() {
+            let x = document.getElementById("sepet-1");
+            if (x.style.opacity === "0") {
+                x.style.opacity = "1";
+            } else {
+                x.style.opacity = "0";
+            }
+        }
+    </script>
+
+    <!-- aşağıdaki script sepetteki resimleri kaydırmaya yarıyor -->
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../slick/slick.js"></script>
+    <script type="text/javascript">
+        $(document).on('ready', function () {
+
+            $(".regular").slick({
+                dots: false,
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4
+            });
+            $(".lazy").slick({
+                lazyLoad: 'ondemand',
+                infinite: true
+            });
+        });
+
+
+    </script>
+
+
+
+    </div>
+    <div class="footer-sid">
+        <a class="home" href="PostList.html"></a>
+        <a class="flag" href="#"></a>
+        <a class="basket" href="#"></a>
+        <a class="user" href="home.html"></a>
+    </div>
+</body>
+</html>
+
+
+<script>
+            var id = localStorage.getItem('productdetailid')
+
+            $(document).ready(function () {
+
+                //ürün detayının servisten çekildiği alan
+                //var id = localStorage.getItem('productdetailid')
+                $.getJSON(apiurl + "/api/Product/GetProductDetail/" + id + "/" + InfluencerUserID, function (data) {
+
+                    $(".person-header").append('<div class="person-name">' + data.Title + '</div>')
+                    $("#description").append("<p class='aciklama'>" + data.Description + "</p>")
+                    if (data.IsSaved == true) {
+                        $(".sepet-ikon").after('<a class="fav_red" id=' + id + '></a>')
+                    }
+                    else {
+                        $(".sepet-ikon").after('<a class="fav" id=' + id + '/></a>')
+
+                    }
+                    $.map(data.ImgPaths, function (value, index) {
+                        $("#test").append('<div>' +
+                            '<img src="' + Productweburl + '' + data.ImgPaths[index] + '">' +
+                            '</div>')
+                    })
+                })
+                //Ürün kaydetme kodu
+                $(document).on("click", 'a[id=' + id + ']', function () {
+                    
+                    $.getJSON(apiurl + "/api/Product/SaveProduct/" + id + "/" + InfluencerUserID, function (data) {
+                        if (data.IsSaved == true) {
+                            document.getElementById(+id).className = "fav_red";
+                        }
+                        else {
+                            document.getElementById(+id).className = "fav";
+                        }
+                    })
+                })
+             
+            })
+
+  
+</script>

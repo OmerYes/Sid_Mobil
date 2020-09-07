@@ -1,0 +1,326 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html {
+    font-size: 10px;
+    font-family: 'Helvetica';
+    border: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+
+
+.top-container {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 3.7rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.top-back {
+    display: inline-block;
+    float: left;
+    margin-left: 2rem;
+    margin-top: 1.9rem;
+    color: #4DB7D8;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.top-forward {
+    display: inline-block;
+    margin-left: 27rem;
+    margin-top: 1.9rem;
+    color: #4DB7D8;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.body-container {
+    width: 100%;
+    height: 62%;
+    margin-top: 2rem;
+    background-color: rgb(192, 192, 192, 0.1);
+    position: absolute;
+    border: 1px solid rgb(192, 192, 192, 0.1);
+}
+
+.body-image {
+    width: 93%;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.body-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.body-text {
+    width: 97%;
+    padding-left: 1rem;
+    padding-top: 1.3rem;
+    padding-bottom: 1.2rem;
+    font-size: 1.3rem;
+    background-color: #b8c4c7;
+    color: black;
+
+}
+
+.body-textarea {
+    width: 100%;
+    height: 5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 0.9rem;
+}
+
+.body-textarea textarea {
+    font-size: 0.8rem;
+    padding: 0.6rem;
+    width: 97%;
+    color: rgb(0, 0, 0);
+    border: none;
+    background-color: transparent;
+    line-height: 1rem;
+}
+
+.body-cizgi {
+    margin-top: 1rem;
+    border: 1px solid rgb(192, 192, 192);
+}
+
+.footer-square {
+    width: 6.8rem;
+    height: 7rem;
+    text-align: center;
+    margin-top: 1.3rem;
+    margin-left: 2.2rem;
+    border: 1px solid rgb(141, 141, 141, 0.5);
+}
+
+.footer-plus {
+    width: 2.9rem;
+    height: 2.9rem;
+    
+}
+
+.footer-plus {
+   margin-top: 1.2rem;
+    margin-left: 2rem;
+}
+
+.footer-plus i {
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: rgb(141, 141, 141);
+}
+.footer-square{
+    display: inline-block;
+}
+
+.footer-square-text {
+    font-size: 1.3rem;
+    color: rgb(141, 141, 141, 0.5);
+    margin-top: 0.5rem;
+}
+
+.footer-img {
+    position: absolute;
+    width: 6.8rem;
+    height: 7rem;
+    text-align: center;
+    margin-top: 1.3rem;
+    margin-left: 2.2rem;
+    border: 1px solid rgb(141, 141, 141, 0.5);
+    display: inline-block;
+
+}
+
+.footer-image {
+    width: 4rem;
+    height: 6rem;
+    text-align: center;
+    display: inline-block;
+    float: left;
+}
+
+.footer-image img {
+    width: 100%;
+    height: 100%;
+    margin-left: 1.5rem;
+    margin-top: 0.7rem;
+}
+
+.footer-delete {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.footer-delete img {
+    width: 100%;
+    height: 100%;
+    float: right;
+    margin-top: 1rem;
+}
+
+@media screen and (min-width :375px){
+    .top-forward {
+    display: inline-block;
+    float: right;
+    margin-right: 2rem;
+}
+}
+@media screen and (max-width :345px){
+    .top-forward {
+    display: inline-block;
+    float: right;
+    margin-right: 1rem;
+    margin-left: 0;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+

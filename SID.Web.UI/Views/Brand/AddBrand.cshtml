@@ -1,0 +1,27 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "AddBrand";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>AddBrand</h2>
+
+@model SID.Web.UI.Models.VM.BrandVM
+
+
+@using (Html.BeginForm("AddBrand", "Brand", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+    
+    @Html.HiddenFor(q => q.ID)
+
+    <div class="form-group">
+
+        <label>Marka Adı</label>
+        @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Ekle</button>
+
+}

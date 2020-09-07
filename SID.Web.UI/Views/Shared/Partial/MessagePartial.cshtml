@@ -1,0 +1,59 @@
+﻿
+@if (ViewBag.IslemDurum == "ModelStateError")
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+else if ((string)TempData["IslemDurum"] == "Success")
+{
+    <div class="alert alert-success">
+        İşleminiz Başarılı Şekilde Gerçekleştirilmiştir.
+    </div>
+}
+@if ((string)TempData["AramaSonuc"] == "SonucBulunamadı")
+{
+    <div class="alert alert-danger">
+        Aramış olduğunuz isimde herhangi bir kayıt bulunamadı.
+    </div>
+}
+
+@if (ViewBag.ResimDurum == "LogoDurum")
+{
+    <div class="alert alert-danger">
+        lütfen Logo Seçiniz....
+    </div>
+}
+
+@if (ViewBag.ResimUzanti == "LogoUzanti")
+{
+    <div class="alert alert-danger">
+        Logo jpeg, png uzantılı eklenebilir. Lütfen değiştiriniz!
+    </div>
+}
+@if (ViewBag.ResimBoyutu == "LogoBoyutu")
+{
+    <div class="alert alert-danger">
+        Logo 7MB boyutunu geçemez
+    </div>
+}
+
+@if (ViewBag.ResimDurum == "BackGroundImageDurum")
+{
+    <div class="alert alert-danger">
+        lütfen Marka Resmi Seçiniz....
+    </div>
+}
+
+@if (ViewBag.ResimUzanti == "BackGroundImageUzanti")
+{
+    <div class="alert alert-danger">
+        Marka Resmi jpeg, png uzantılı eklenebilir. Lütfen değiştiriniz!
+    </div>
+}
+@if (ViewBag.ResimBoyutu == "BackGroundImageBoyutu")
+{
+    <div class="alert alert-danger">
+        Marka Resmi 7MB boyutunu geçemez
+    </div>
+}

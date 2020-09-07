@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="~/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<link href="~/css/sid.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<title>SID</title>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InfluencerLayout</title>
+</head>
+<body>
+
+    @Html.Partial("~/Views/Shared/Partial/SearchPartial.cshtml")
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">Platformlar</li>
+                    <li class="list-group-item">Facebook</li>
+                    <li class="list-group-item">İnstagram</li>
+                    <li class="list-group-item">Dergi</li>
+                    <li class="list-group-item">Televizyon</li>
+                    <li class="list-group-item">Gazete</li>
+                    <li class="list-group-item">E-ticaret</li>
+                    <li class="list-group-item">Oyun</li>
+                    <li class="list-group-item active">Popülasyon</li>
+                    <li class="list-group-item">100.000 ve altı</li>
+                    <li class="list-group-item">100.000 - 200.000</li>
+                    <li class="list-group-item">3 milyon ve üstü</li>
+                    <li class="list-group-item active">Satış oranı</li>
+                    <li class="list-group-item">% 5 ve altı</li>
+                    <li class="list-group-item">%20 ve üstü</li>
+                    <li class="list-group-item active">Eşleşme Oranı</li>
+                    <li class="list-group-item">%30 ve altı</li>
+                    <li class="list-group-item">%90 ve üstü</li>
+                </ul>
+            </div>
+            @RenderBody()
+
+        </div>
+    </div>
+   
+</body>
+</html>

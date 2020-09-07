@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/InfluencerLayout.cshtml";
+}
+@{
+    int sayac = 0;
+    var count = Math.Ceiling(Convert.ToDecimal(Convert.ToDecimal(Model.Count) / 4));
+    bool result = true;
+    int index = 0;
+
+}
+@model List<InfluencerVM>
+
+
+
+    <div class="col-md-9">
+        @Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+
+        @for (int i = 0; i < count; i++)
+        {
+            <div class="card-deck">
+
+
+                @while (result)
+                {
+
+                    <div class="card">
+                        <img src="@Model.ToArray()[sayac].ImagePath" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.ToArray()[sayac].Name @Model.ToArray()[sayac].SurName</h5>
+                            <h6><i class="fab fa-instagram"></i> <i class="fab fa-facebook-square"></i> <i class="fab fa-twitter"></i></h6>
+                            <p class="card-text">Satış oranı</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Eşleşme oranı</small>
+                        </div>
+                    </div>
+
+
+                    if (sayac == Model.Count - 1)
+                    {
+                        return;
+                    }
+
+                    index++; sayac++;
+                    if (index == 4)
+                    {
+                        index = 0;
+                        break;
+                    }
+
+                }
+
+            </div>
+
+        }
+
+
+    </div>
+
+

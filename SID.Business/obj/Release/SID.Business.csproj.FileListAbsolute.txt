@@ -1,0 +1,15 @@
+C:\Users\omer\source\repos\SID.Business\bin\Release\SID.Business.dll.config
+C:\Users\omer\source\repos\SID.Business\bin\Release\SID.Business.dll
+C:\Users\omer\source\repos\SID.Business\bin\Release\SID.Business.pdb
+C:\Users\omer\source\repos\SID.Business\bin\Release\EntityFramework.dll
+C:\Users\omer\source\repos\SID.Business\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\omer\source\repos\SID.Business\bin\Release\SID.Data.dll
+C:\Users\omer\source\repos\SID.Business\bin\Release\SID.Data.pdb
+C:\Users\omer\source\repos\SID.Business\bin\Release\SID.Data.dll.config
+C:\Users\omer\source\repos\SID.Business\bin\Release\EntityFramework.xml
+C:\Users\omer\source\repos\SID.Business\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\omer\source\repos\SID.Business\obj\Release\SID.Business.csprojAssemblyReference.cache
+C:\Users\omer\source\repos\SID.Business\obj\Release\SID.Business.csproj.CoreCompileInputs.cache
+C:\Users\omer\source\repos\SID.Business\obj\Release\SID.Business.csproj.CopyComplete
+C:\Users\omer\source\repos\SID.Business\obj\Release\SID.Business.dll
+C:\Users\omer\source\repos\SID.Business\obj\Release\SID.Business.pdb

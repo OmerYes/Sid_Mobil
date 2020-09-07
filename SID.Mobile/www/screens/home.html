@@ -1,0 +1,135 @@
+﻿ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>SID.Mobile</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <script src="../scripts/models/influenceraccountVM.js"></script>
+    <script src="../scripts/api/pofile/ProfileAccountManager.js"></script>
+
+    <link href="../css/sid.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+</head>
+
+<body>
+    <img src="" />
+    <div class="top">
+        <a href="postlist.html"><img class="logo-sid" src="../images/logo/sid-logo-mavi.svg"></a> 
+    <input class="search" type="search"><a class="cam" href="#"></a></div>
+    <div class="profil">
+        <div class="profil-m">
+            <div class="profil-k">
+                <div class="profil-i"><img src="../images/navbar/gozluk.png"><span>Expert</span></div>
+                <div class="profil-i"><img src="../images/navbar/star.svg"><span>Influencer</span></div>
+            </div>
+            <div>
+                <div class="profil-j abone"></div>
+                <div class="profil-j abonelik"></div>
+            </div>
+        </div>
+        <div class="profil-sid">
+            <div class="p-foto"></div>
+            <h5 class="profil-name"></h5>
+        </div>
+    </div>
+
+    <!-- tabs -->
+    <div class="tab">
+        <button class="tablinks" onclick="tabAc(event, 'Hesap')" id="defaultOpen">Hesabım</button>
+        <button class="tablinks Post" onclick="tabAc(event, 'Post')" id="postpage">Postlar</button>
+        <button class="tablinks" onclick="tabAc(event, 'Liste')" id="listpage">Listeler</button>
+    </div>
+
+    <div id="Hesap" class="tabcontent hesap-bilgisi">
+        <ul>
+            <li><a href="profilbilgilerim.html">Profil Bilgilerim</a></li>
+            <li><a href="#">Siparişlerim</a></li>
+            <li><a href="Wallet.html">Cüzdanım</a></li>
+            <li><a href="adreslerim.html">Adreslerim</a></li>
+        </ul>
+        <a href="#">Paylaşımlarından kazanç sağla</a>
+    </div>
+
+    <div id="Post" class="tabcontent">
+        <!-- <div class="links-b"><a class="active" href="#">Postlar</a><a href="#">Listeler</a></div> -->
+        <div class="thumb-list" id="allpost">
+           <div class="foto-ekle" id="post-ekle"><p>Yeni post</p></div>
+           
+          
+            
+        </div>
+    </div>
+
+    <div id="Liste" class="tabcontent">
+        <h3 class="baslik"><!--Günlük Giyim Ayakkabılar--></h3>
+        <div class="liste">
+            
+        </div>
+    
+        <div class="empty"></div>
+    </div>
+
+    <script>
+        function tabAc(evt, newId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(newId).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+    <!-- tabs end -->
+
+    <div class="footer-sid">
+        <a class="home" href="PostList.html"></a>
+        <a class="flag" href="#"></a>
+        <a class="basket" href="#"></a>
+        <a class="user" href="home.html"></a>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+        //Postlara tıklandığı zaman apiden verilerin getirilmesini sağlayan alan
+
+        $("#postpage").click(function (event) {
+            $("div").remove(".foto1");
+            $.getJSON(apiurl + "/api/Profile/Getpostlist/" + InfluencerUserID, function (data) {
+            $.map(data, function (item) {
+                $('#allpost').append("<div class='foto1' style='background: url(" + apiurl + item.PostImgPath + ") no-repeat center center'></div>"
+                )
+            })
+        })
+       
+        })
+    $("#post-ekle").click(function () {
+        window.location.href = 'AddPost.html';
+    })
+    //Listeler e tıklandığı zaman apiden verilerin getirilmesini sağlayan alan
+    $("#listpage").click(function (event) {
+         //uygulama açıkken sadece bir kez apiye bağlanıp verileri çekmeyi sağlıyor
+        $(".liste").html("");
+        $.getJSON(apiurl + "/api/Product/GetSaveProduct/" + InfluencerUserID, function (data) {
+            $.map(data, function (item) {
+                $(".liste").append("<div class='liste1' style='background:url(" + Productweburl + item.ProductImagePath +") no-repeat center center; background-size:contain'></div")
+            })
+        })
+       
+    })
+</script>

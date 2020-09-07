@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LOGİN-1</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/register/register.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="s-login">
+        <div class="s-login-container">
+            <div class="logo-s">  <a href="../index.html"><img src="../img/sid-logo-mavi.svg"></a></div>
+            <div class="s-form-container">
+                <p>
+                    <label>Kart İsmi</label>
+                    <input class="form-input" id="txt_cardname" type="text">
+                </p>
+                <p>
+                    <label>Kart Numarası</label>
+                    <input class="form-input" id="txt_cardnumber" type="text" maxlength="16">
+                </p>
+                <p>
+                    <label>Kart Tipi</label>
+                    <input class="form-input" id="txt_cardtype" type="text">
+                </p>
+             
+                <div><input class="s-login-buton" type="submit" onclick="AddWallet()" id="btn-submit" value="Kaydet"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="sid-back">
+        <div></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function AddWallet()
+    {
+        var wallet = new Object();
+        wallet.CardNumber = $("#txt_cardnumber").val();
+        wallet.CardName = $("#txt_cardname").val();
+        wallet.CardType = $("#txt_cardtype").val();
+        wallet.ID = InfluencerUserID;
+        $.ajax({
+            type: "POST",
+            url: apiurl + "/api/Profile/AddWallet/",
+            data: wallet,
+            success: function (response) {
+                alert("Kredi kartı başarılı bir şekilde eklenmiştir.");
+                window.location.href = "Wallet.html";
+            },
+
+        })
+    }
+
+</script>

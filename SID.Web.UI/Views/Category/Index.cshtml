@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<CategoryVM>
+
+<div class="tab-content" id="pills-tabContent">
+
+    <div class="tab-pane fade show active" id="urun" role="tabpanel" aria-labelledby="urunler">
+        <div class="row">
+            <div class="col-md-8">
+               
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Kategori Adı </th>
+                            <th scope="col">Açıklama</th>
+                            <th scope="col">İşlem</th>
+                            <th scope="col">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="p_@item.ID">
+                                <th scope="row">@item.Name</th>
+                                <td>@item.Description</td>
+                                <td><i onclick="DeleteCategory(@item.ID)" class="fas fa-trash" style="cursor:pointer"></i></td>
+                                <td><a href="/Category/UpdateCategory/@item.ID"><i class="fas fa-edit" style="cursor:pointer"></i></a> </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+          </div>
+    </div>
+</div>
+<script>
+    function DeleteCategory(id) {
+        swal({
+            title: "Ürünü silmek istediğinize emin misiniz?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+
+
+
+                if (willDelete) {
+                    $.ajax({
+                        url: "/Category/DeleteCategory/" + id,
+                        type: "POST",
+                        success: function () {
+                            $("#p_" + id).fadeOut();
+                        }
+                    })
+
+                    swal("Ürün başarıyla silindi!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("İşlem iptal edildi!");
+                }
+            });
+    }
+
+</script>

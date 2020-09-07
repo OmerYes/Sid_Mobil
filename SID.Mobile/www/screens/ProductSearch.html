@@ -1,0 +1,86 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ARAMA 2</title>
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/sid.css" rel="stylesheet" />
+    <link href="../slick/slick.css" rel="stylesheet" />
+    <link href="../slick/slick-theme.css" rel="stylesheet" />
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+</head>
+<body>
+    <div class="top fixed"><img class="logo-sid" src="../img/sid-logo-mavi.svg"><input class="search" type="search"><a class="cam" href="#"></a></div>
+
+    <div class="kontrol-alt-ust">
+        <a href="#" class="ucgen"></a>
+        <div class="sid-filtre"><a href="#">Kadın Ürün</a><a href="#">Erkek Ürün</a><a href="#">Profil</a><a href="#">Hashtag</a></div>
+        <div class="filtre-2blok">
+
+        </div>
+
+
+    </div>
+    <div class="footer-sid">
+        <a class="home" href="PostList.html"></a>
+        <a class="flag" href="#"></a>
+        <a class="basket" href="#"></a>
+        <a class="user" href="home.html"></a>
+    </div>
+</body>
+</html>
+
+<script>
+    $.getJSON(apiurl + "/api/Product/GetProducts", function (data) {
+        var count = 0
+       
+        $.map(data, function (item) {
+
+            var star0 = ("<span class='star'></span>") + ("<span class='star'></span>") + ("<span class='star '></span>") + ("<span class='star '></span>") + ("<span class='star '></span>")
+            var star1 = ("<span class='star checked'></span>") + ("<span class='star'></span>") + ("<span class='star '></span>") + ("<span class='star '></span>") + ("<span class='star '></span>")
+            var star2 = ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star '></span>") + ("<span class='star '></span>") + ("<span class='star '></span>")
+            var star3 = ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star '></span>") + ("<span class='star '></span>")
+            var star4 = ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star '></span>")
+            var star5 = ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star checked'></span>") + ("<span class='star checked'></span>")
+
+
+            $(".filtre-2blok").append('<div class="filtre-2">' +
+                '<div class="filtre-2-1" style="background: url(' + Productweburl + item.MainImgPath + ') no-repeat center center; background-size:contain" data-id="' + item.ID + '"></div>' +
+                '<p>' + item.Description + '</p>' +
+                '<div class="sid-rate" id="star_rate' + count + '">' +
+
+                '</div > ' +
+                '<h4>' + item.UnitPrice + ' ₺</h4>' +
+
+                '</div>')
+
+            if (item.StartCount == 0) {
+                $("#star_rate" + count).append(star0)
+            } else if (item.StartCount == 1) {
+                $("#star_rate" + count).append(star1)
+            } else if (item.StartCount == 2) {
+                $("#star_rate" + count).append(star2)
+            } else if (item.StartCount == 3) {
+                $("#star_rate" + count).append(star3)
+            } else if (item.StartCount == 4) {
+                $("#star_rate" + count).append(star4)
+            } else if (item.StartCount == 5) {
+                $("#star_rate" + count).append(star5)
+            }
+
+            count++
+            console.log(count)
+        })
+    })
+
+    $(document).on('click', '.filtre-2-1', function () {
+        var id = $(this).data("id")
+
+        var value = id;
+        localStorage.setItem("productdetailid", value);
+        document.location.href = "Productdetail.html";    });
+
+</script>

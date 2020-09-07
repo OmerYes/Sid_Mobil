@@ -1,0 +1,16 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model SID.Web.UI.Models.VM.CategoryVM
+<h1>Kategori Ekle</h1>
+
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+    @Html.Partial("Partial/CategoryForm")
+    <button type="submit" class="btn btn-primary">Ekle</button>
+}
+

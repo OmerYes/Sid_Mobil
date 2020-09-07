@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "UpdateAdminUser";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+
+@using (Html.BeginForm("UpdateAdminUser", "AdminUser", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.Partial("Partial/AdminUserForm")
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+}
+

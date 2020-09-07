@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ANA SAYFA</title>
+
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/sid.css" rel="stylesheet" />
+
+    <link href="../slick/slick.css" rel="stylesheet" />
+    <link href="../slick/slick-theme.css" rel="stylesheet" />
+
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+
+</head>
+<body>
+    <div class="top">
+        <a href="PostList.html"><img class="logo-sid" src="../images/logo/sid-logo-mavi.svg"></a>
+        <input class="search" type="search"><a class="cam" href="#"></a>
+    </div>
+    <!-- bu divin classı deiğişti -->
+    <div class="kontrol-alt-b" id="postlist">
+
+        <!--<div class="person">
+            <div class="person-header">
+                <div class="person-face"><div style="background: url(../img/foto1.jpg) no-repeat center center"></div></div>
+                <div class="person-name">Smlo</div>
+                <div class="star"></div>
+                <a href="#" class="share"></a>
+            </div>
+            <div class="person-photo" style="background: url(../img/foto2.jpg) no-repeat center center;"></div>
+            <div class="person-footer">
+                <a href="#" class="like"></a>
+                <p>3000 kişi bunu beğendi</p>
+                <a href="#" class="fav"></a>
+            </div>
+
+        </div>-->
+
+
+    </div>
+    <div class="footer-sid">
+        <a class="home" href="PostList.html"></a>
+        <a class="flag" href="#"></a>
+        <a class="basket" href="#"></a>
+        <a class="user" href="home.html"></a>
+    </div>
+</body>
+</html>
+<script>
+
+    var counter = 0;
+    $.getJSON(apiurl + "/api/Post/Getpostlist/" + InfluencerUserID, function (data) {
+
+        $.map(data, function (item) {
+            if (item.IsLiked == false) {
+                $("#postlist").append('<div class="person"><div class="person-header"><div class="person-face">' +
+                    '<div style="background: url(' + weburl + item.InfluencerImgPath + ') no-repeat center center; background-size:cover;" ></div></div>' +
+                    '<div class="person-name">' + item.FullName + '</div>' +
+                    '<div class="star"></div>' +
+                    '<a href="#" class="share"></a>' +
+                    '</div>' +
+                    '<div class="person-photo" style="background: url(' + apiurl + item.PostPath + ') no-repeat center center;"></div>'
+                    + '<div class="person-footer" id="person-footer' + counter + '" data-id="person-footer' + counter + '">'
+                    + '<a class="like" data-influencerid=' + InfluencerUserID + ' data-postid=' + item.ID + ' data-isliked=' + item.IsLiked + '></a>' +
+                    '<p>' + item.LikeCount + ' kişi bunu beğendi</p>'
+                    + '</div></div>')
+            }
+            else {
+                $("#postlist").append('<div class="person"><div class="person-header"><div class="person-face">' +
+                    '<div style="background: url(' + weburl + item.InfluencerImgPath + ') no-repeat center center; background-size:cover;" ></div></div>' +
+                    '<div class="person-name">' + item.FullName + '</div>' +
+                    '<div class="star"></div>' +
+                    '<a href="#" class="share"></a>' +
+                    '</div>' +
+                    '<div class="person-photo" style="background: url(' + apiurl + item.PostPath + ') no-repeat center center;"></div>'
+                    + '<div class="person-footer" id="person-footer' + counter + '" data-id="person-footer' + counter + '">'
+                    + '<a class="like_true"  data-influencerid=' + InfluencerUserID + ' data-postid=' + item.ID + ' data-isliked=' + item.IsLiked + '></a>' +
+                    '<p>' + item.LikeCount + ' kişi bunu beğendi</p>'
+                    + '</div></div>')}
+            counter++
+        })
+    
+    })
+ 
+    $(document).on("click", "div[class='person-footer']", function () {
+        var postid = $(this).children().data("postid")
+        var ParentId = $(this).data("id")
+        var liked = $(this).children().data("isliked")
+
+        if (liked == false) {
+            
+            $(this).children("p").remove()
+            $(this).children("a").remove()
+            //$(this).addClass("disableddiv")
+            $.getJSON(apiurl + "/api/Post/GetPostLikes/" + postid + "/" + InfluencerUserID, function (data) {
+           
+
+                $("#" + ParentId).append('<a class="like_true" data-influencerid=' + InfluencerUserID + ' data-postid=' + data.PostID + ' data-isliked=' + data.IsLiked + '></a>' + '<p>' + data.LikeCount + ' kişi bunu beğendi</p>')
+
+                
+            })
+
+            
+        }
+        else {
+
+            $(this).children("p").remove()
+            $(this).children("a").remove()
+           
+            $.getJSON(apiurl + "/api/Post/GetPostLikes/" + postid + "/" + InfluencerUserID, function (data) {
+
+
+                $("#" + ParentId).append('<a class="like" data-influencerid=' + InfluencerUserID + ' data-postid=' + data.PostID + ' data-isliked=' + data.IsLiked + '></a>' + '<p>' + data.LikeCount + ' kişi bunu beğendi</p>')
+
+                
+
+            })
+
+            
+        }
+            
+        
+        })
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "AddBrandLogo";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model BrandVM
+
+@using (Html.BeginForm("AddBrandLogo", "Brand", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+
+    @Html.HiddenFor(q => q.ID)
+
+    <div class="form-group">
+        <label>Logo</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="files" name="logo">
+            <label class="custom-file-label" for="files">Marka Logosunu Seçiniz</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Logo Ekle</button>
+}

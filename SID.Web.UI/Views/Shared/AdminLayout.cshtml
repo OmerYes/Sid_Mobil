@@ -1,0 +1,55 @@
+﻿
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="~/css/sid.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>SID</title>
+</head>
+<body>
+    @Html.Partial("~/Views/Shared/Partial/SearchPartial.cshtml")
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               
+                <div class="header-sid">
+                    <div class="head-sid-img"><img src="/img/head-foto.png" alt=""></div>
+                    <a href="/Brand/AddBrandLogo/@ViewBag.AdminUserID" class="head-magaza-logo">Mağaza logo</a>
+                    <div class="head-magaza-gorsel"><a class="btn btn-primary" href="/Brand/AddBackGroundImage/@ViewBag.AdminUserID"><i class="fas fa-camera-retro"></i>Arkaplana resim ekleyin</a></div>
+                    <div class="head-magaza-abone">abone sayısı 5.000</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="menu-sid-2">
+                    <li><a href="/Product/Index">Ürünler</a></li>
+                    <li><a href="/Order/Index">Siparişler</a></li>
+                    <li><a href="/Message/Index">Mesajlar</a></li>
+                    <li><a href="/Influencer/Index">Partnerler</a></li>
+                    <li><a href="/Financial/Index">Finansal</a></li>
+                    <li><a href="/AdminUser/UpdateAdminUser/@ViewBag.AdminUserID">Ayarlar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

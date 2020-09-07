@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "UpdateBrand";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateBrand", "Brand", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.Partial("~/Views/Shared/Partial/MessagePartial.cshtml")
+    @Html.Partial("Partial/BrandForm")
+    <button type="submit" class="btn btn-primary">Ekle</button>
+
+}

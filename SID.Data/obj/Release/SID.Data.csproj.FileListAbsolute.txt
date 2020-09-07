@@ -1,0 +1,12 @@
+C:\Users\omer\source\repos\SID.Data\bin\Release\SID.Data.dll.config
+C:\Users\omer\source\repos\SID.Data\bin\Release\SID.Data.dll
+C:\Users\omer\source\repos\SID.Data\bin\Release\SID.Data.pdb
+C:\Users\omer\source\repos\SID.Data\bin\Release\EntityFramework.dll
+C:\Users\omer\source\repos\SID.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\omer\source\repos\SID.Data\bin\Release\EntityFramework.xml
+C:\Users\omer\source\repos\SID.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\omer\source\repos\SID.Data\obj\Release\SID.Data.csprojAssemblyReference.cache
+C:\Users\omer\source\repos\SID.Data\obj\Release\SID.Data.csproj.CoreCompileInputs.cache
+C:\Users\omer\source\repos\SID.Data\obj\Release\SID.Data.csproj.CopyComplete
+C:\Users\omer\source\repos\SID.Data\obj\Release\SID.Data.dll
+C:\Users\omer\source\repos\SID.Data\obj\Release\SID.Data.pdb

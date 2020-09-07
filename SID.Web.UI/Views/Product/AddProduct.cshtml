@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model SID.Web.UI.Models.VM.ProductVM
+<h1>Ürün Ekle</h1>
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+@Html.Partial("Partial/ProductForm")
+    <button type="submit" class="btn btn-primary">Ekle</button>
+}
+

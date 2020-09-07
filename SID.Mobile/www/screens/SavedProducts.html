@@ -1,0 +1,48 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SEPETİM</title>
+    <script src="../scripts/core/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/core/coregeneral.js"></script>
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../css/sid.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="top">
+        <a href="postlist.html"><img class="logo-sid" src="../images/logo/sid-logo-mavi.svg"></a>
+        <input class="search" type="search"><a class="cam" href="#"></a>
+    </div>
+    <div class="kontrol-alt">
+        <div class="baslik-d">Kaydedilenler</div>
+        <div class="liste">
+            
+        </div>
+       
+    </div>
+    <div class="footer-sid"><a class="home" href="#"></a><a class="flag" href="#"></a><a class="basket" href="#"></a><a class="user" href="#"></a></div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+
+        $.getJSON(apiurl + "/api/Product/GetSaveProduct/" + InfluencerUserID, function (data) {
+
+            $.map(data, function (item) {
+                $(".liste").append('<div class="liste1" style="background:url(' + Productweburl + item.ProductImagePath + ') no-repeat center center; background-size:contain" data-productid="'+ item.ProductID +'"></div>')
+            })
+        })
+
+        $(document).on('click','.liste1', function () {
+            var Productidvalue = $(this).data("productid")
+            window.localStorage.setItem("SelectedProductID", Productidvalue)
+            window.location.href = "Postproductdetail.html";
+
+        })
+    })
+</script>

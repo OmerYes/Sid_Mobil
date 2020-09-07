@@ -1,0 +1,29 @@
+﻿@model AdminUserVM
+@Html.HiddenFor(q => q.ID)
+<div class="form-group">
+    <label>Marka:</label>
+    @Html.DropDownList("BrandID", Model.drpBrand, "Marka Seçiniz", new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.FullName)
+    @Html.TextBoxFor(q => q.FullName, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.Email)
+    @Html.TextBoxFor(q => q.Email, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.Password)
+    @Html.PasswordFor(q => q.Password, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(q => q.ConfirmPassword)
+    @Html.PasswordFor(q => q.ConfirmPassword, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label>Profil Resmi</label>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="files" name="AdminUserImage">
+        <label class="custom-file-label" for="files">Yönetici Profil Resmi Seçiniz</label>
+    </div>
+</div>
